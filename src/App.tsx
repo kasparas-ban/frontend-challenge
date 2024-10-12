@@ -1,10 +1,14 @@
 import { NextUIProvider } from '@nextui-org/react'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { queryClient } from '@/providers/queryClient'
 
 function App() {
   return (
-    <NextUIProvider>
-      <></>
-    </NextUIProvider>
+    <QueryClientProvider client={queryClient}>
+      <NextUIProvider>
+        <></>
+      </NextUIProvider>
+    </QueryClientProvider>
   )
 }
 

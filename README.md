@@ -7,7 +7,7 @@ Assuming you have Node.js and pnpm installed, follow these steps to launch the a
    Create a `.env` file with the following contents:
 
    ```text
-   VITE_API_URL = /* enter your API URL here */
+   VITE_API_URL=# enter your API URL here
    ```
 
 2. **Install the dependencies:**

@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import pluginQuery from '@tanstack/eslint-plugin-query'
 import react from 'eslint-plugin-react'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
@@ -6,7 +7,12 @@ import tseslint from 'typescript-eslint'
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    extends: [js.config, s.recommended, ...tseslint.configs.recommended],
+    extends: [
+      js.config,
+      s.recommended,
+      ...tseslint.configs.recommended,
+      ...pluginQuery.configs['flat/recommended'],
+    ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
