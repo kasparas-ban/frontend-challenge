@@ -1,9 +1,16 @@
 import { useQuery } from '@tanstack/react-query'
+import { getStackComponent, getStackComponents } from '@/api/stackComponentAPI'
 
 export function useStackComponents() {
-  return useQuery({ queryKey: ['stack-components'] })
+  return useQuery({
+    queryFn: getStackComponents,
+    queryKey: ['stack-components'],
+  })
 }
 
 export function useStackComponent(componentId: string) {
-  return useQuery({ queryKey: ['stack-components', { componentId }] })
+  return useQuery({
+    queryFn: () => getStackComponent(componentId),
+    queryKey: ['stack-components', { componentId }],
+  })
 }

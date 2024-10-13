@@ -1,3 +1,5 @@
+import StacksTable from './StacksTable/StacksTable'
+
 export default function StacksPage() {
-  return <>Stacks</>
+  return <StacksTable />
 }

@@ -11,7 +11,9 @@ export default function RootLayout() {
           <div className='pt-10'>
             <NavDrawer />
           </div>
-          <Outlet />
+          <div className='w-full'>
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
