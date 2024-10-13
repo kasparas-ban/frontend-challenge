@@ -19,4 +19,4 @@ export const ROUTES = {
       path: ':componentId',
     },
   },
-}
+} as const
