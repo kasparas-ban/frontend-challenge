@@ -32,7 +32,7 @@ export default function NavDrawer() {
           <Link to={link.path} key={link.path}>
             <li
               className={cn(
-                'flex w-32 items-center gap-2 rounded px-3 py-1 transition-colors duration-300 hover:bg-gray-200',
+                'flex w-32 items-center gap-2 rounded px-3 py-2 transition-colors duration-300 hover:bg-gray-200',
                 isItemActive(link) && 'text-indigo-600'
               )}
             >

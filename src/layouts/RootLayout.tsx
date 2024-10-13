@@ -7,7 +7,7 @@ export default function RootLayout() {
     <div className='flex justify-center px-2'>
       <div className='w-full max-w-4xl pt-2'>
         <Header />
-        <div className='flex gap-8 pt-4'>
+        <div className='flex gap-8 pb-20 pt-4'>
           <div className='pt-10'>
             <NavDrawer />
           </div>

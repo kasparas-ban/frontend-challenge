@@ -1,3 +1,4 @@
+import { Fragment } from 'react/jsx-runtime'
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 import {
   Table,
@@ -42,7 +43,9 @@ export default function DataTable<T extends { id: string }>(
             key={row.id}
             className='cursor-pointer transition-colors duration-100 hover:bg-gray-200'
           >
-            {columns.map(col => col.render(row))}
+            {columns.map(col => (
+              <Fragment key={col.key.toString()}>{col.render(row)}</Fragment>
+            ))}
           </TableRow>
         )) || []}
       </TableBody>

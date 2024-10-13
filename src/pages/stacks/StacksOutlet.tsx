@@ -11,7 +11,7 @@ export default function StacksOutlet() {
     currentPath === ROUTES.stacks.path ? 'Stacks' : 'Stack components'
 
   return (
-    <div>
+    <div className='flex flex-col gap-2'>
       <h1 className='text-2xl font-semibold'>{pageTitle}</h1>
 
       <div className='flex flex-col gap-2'>
