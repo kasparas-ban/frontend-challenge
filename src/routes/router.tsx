@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 import { ROUTES } from '@/constants/routes'
+import RootLayout from '@/layouts/RootLayout'
 import HomePage from '@/pages/home/HomePage'
 import StackComponentsPage from '@/pages/stacks/StackComponentsPage'
 import StacksOutlet from '@/pages/stacks/StacksOutlet'
@@ -13,7 +14,7 @@ import StackInfoPage from '@/pages/stacks/stackInfo/StackInfoPage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
+    <Route element={<RootLayout />}>
       {/* Home */}
       <Route path={ROUTES.home.path} element={<HomePage />} />
 
@@ -35,7 +36,7 @@ const router = createBrowserRouter(
           />
         </Route>
       </Route>
-    </>
+    </Route>
   )
 )
 
