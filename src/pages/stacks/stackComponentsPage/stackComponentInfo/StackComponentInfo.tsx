@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Skeleton } from '@nextui-org/react'
 import dayjs from 'dayjs'
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner'
@@ -8,13 +8,14 @@ import { StackComponent } from '@/types/stackComponent'
 export default function StackComponentInfo() {
   const { componentId } = useParams()
 
-  if (!componentId) return <Navigate to='../' /> // MARK: need to show an error page
+  if (!componentId) throw Error('Stack component ID not found')
 
   return <ComponentInfo componentId={componentId} />
 }
 
 function ComponentInfo({ componentId }: { componentId: string }) {
-  const { data: component, isLoading } = useStackComponent(componentId)
+  const { data: component, isLoading, isError } = useStackComponent(componentId)
+  if (isError) throw Error('Stack component not found')
 
   return (
     <div className='flex flex-col gap-8'>

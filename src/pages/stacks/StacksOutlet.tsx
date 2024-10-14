@@ -14,7 +14,7 @@ export default function StacksOutlet() {
     <div className='flex flex-col gap-2'>
       <h1 className='text-2xl font-semibold'>{pageTitle}</h1>
 
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-6'>
         <Tabs
           variant='underlined'
           aria-label='Stack list and stack component list tabs'
