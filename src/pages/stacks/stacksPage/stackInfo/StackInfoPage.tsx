@@ -27,7 +27,7 @@ function StackInfo({ stackId }: { stackId: string }) {
   return (
     <div className='flex flex-col gap-8'>
       <StackInfoSection stack={stack} isLoading={isLoading} />
-      <StackComponentsList stackId={stackId} />
+      <StackComponentsList stack={stack} isLoading={isLoading} />
     </div>
   )
 }
@@ -127,9 +127,13 @@ function StackInfoSection({
   )
 }
 
-function StackComponentsList({ stackId }: { stackId: string }) {
-  const { data: stack, isLoading } = useStack(stackId)
-
+function StackComponentsList({
+  stack,
+  isLoading,
+}: {
+  stack?: Stack
+  isLoading: boolean
+}) {
   const groupedComponents = Object.entries(stack?.components || {}).reduce(
     (prev, curr) => {
       const [key, value] = curr
@@ -162,7 +166,7 @@ function StackComponentsList({ stackId }: { stackId: string }) {
             )}
           </>
         ) : (
-          <p className='text-gray-500'>No components found</p>
+          <p className='text-sm text-gray-500'>No components found</p>
         )}
       </div>
     </section>
