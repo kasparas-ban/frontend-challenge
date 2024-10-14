@@ -1,7 +1,8 @@
-import { useParams } from 'react-router-dom'
-import { Skeleton } from '@nextui-org/react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { BreadcrumbItem, Breadcrumbs, Skeleton } from '@nextui-org/react'
 import dayjs from 'dayjs'
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner'
+import { ROUTES } from '@/constants/routes'
 import { useStackComponent } from '@/hooks/stackComponentHooks'
 import { StackComponent } from '@/types/stackComponent'
 
@@ -14,11 +15,28 @@ export default function StackComponentInfo() {
 }
 
 function ComponentInfo({ componentId }: { componentId: string }) {
+  const navigate = useNavigate()
   const { data: component, isLoading, isError } = useStackComponent(componentId)
   if (isError) throw Error('Stack component not found')
 
   return (
     <div className='flex flex-col gap-8'>
+      <Breadcrumbs>
+        <BreadcrumbItem
+          onClick={() => navigate(`/${ROUTES.stackComponents.path}`)}
+        >
+          Components
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          {isLoading || !component ? (
+            <Skeleton className='h-4 w-36 rounded' />
+          ) : (
+            `${component.name}`
+          )}
+        </BreadcrumbItem>
+      </Breadcrumbs>
+
       <ComponentInfoSection component={component} isLoading={isLoading} />
       <ComponentConfigurations component={component} isLoading={isLoading} />
     </div>
@@ -42,7 +60,7 @@ function ComponentInfoSection({
         </h3>
       )}
 
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-3'>
         <div className='flex h-5 items-center pt-6 text-sm'>
           <div className='w-32 text-gray-600'>
             <p>Component ID</p>
@@ -143,7 +161,7 @@ function ComponentConfigurations({
   const isEmpty = !Object.keys(component?.configuration || {}).length
 
   return (
-    <section className='flex flex-col gap-2'>
+    <section className='flex flex-col gap-4'>
       <h3 className='text-lg font-semibold'>Component configurations</h3>
 
       {isLoading ? (

@@ -1,5 +1,5 @@
-import { Link, useParams } from 'react-router-dom'
-import { Skeleton } from '@nextui-org/react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { BreadcrumbItem, Breadcrumbs, Skeleton } from '@nextui-org/react'
 import dayjs from 'dayjs'
 import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner'
 import { ROUTES } from '@/constants/routes'
@@ -15,20 +15,36 @@ type StackComponentItem = {
 
 export default function StackInfoPage() {
   const { stackId } = useParams()
-
   if (!stackId) throw Error('Stack ID not found')
 
   return <StackInfo stackId={stackId} />
 }
 
 function StackInfo({ stackId }: { stackId: string }) {
+  const navigate = useNavigate()
   const { data: stack, isLoading, isError } = useStack(stackId)
   if (isError) throw Error('Stack not found')
 
   return (
-    <div className='flex flex-col gap-8'>
-      <StackInfoSection stack={stack} isLoading={isLoading} />
-      <StackComponentsList stack={stack} isLoading={isLoading} />
+    <div className='flex flex-col gap-4'>
+      <Breadcrumbs>
+        <BreadcrumbItem onClick={() => navigate(`/${ROUTES.stacks.path}`)}>
+          Stacks
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          {isLoading || !stack ? (
+            <Skeleton className='h-4 w-36 rounded' />
+          ) : (
+            `${stack.name}`
+          )}
+        </BreadcrumbItem>
+      </Breadcrumbs>
+
+      <div className='flex flex-col gap-8'>
+        <StackInfoSection stack={stack} isLoading={isLoading} />
+        <StackComponentsList stack={stack} isLoading={isLoading} />
+      </div>
     </div>
   )
 }
@@ -46,7 +62,7 @@ function StackInfoSection({
         <Skeleton className='h-8 w-40 rounded' />
       ) : (
         <h3 className='text-lg font-semibold'>
-          {stack?.name || 'Unknown stack'}
+          {`Stack - ${stack?.name}` || 'Unknown stack'}
         </h3>
       )}
 
@@ -147,7 +163,7 @@ function StackComponentsList({
   )
 
   return (
-    <section>
+    <section className='flex flex-col gap-2'>
       <h3 className='pb-2 text-lg font-semibold'>Stack components</h3>
 
       <div className='flex flex-wrap gap-2'>

@@ -3,8 +3,6 @@ import dayjs from 'dayjs'
 import { StackComponent } from '@/types/stackComponent'
 import { TableColumns } from '@/types/table'
 
-const COMPONENT_FLAVOUR_ICON = {}
-
 export const stackComponentsTableColumns: TableColumns<StackComponent> = [
   {
     key: 'name',

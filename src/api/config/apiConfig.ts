@@ -12,8 +12,7 @@ export class APIError<T> extends Error {
 }
 
 export type CustomError = {
-  title: string
-  subtitle: string
+  detail: string
 }
 
 export async function fetchJSON<T, K>(
