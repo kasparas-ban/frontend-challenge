@@ -84,10 +84,9 @@ function NavDropdown({
   link: NavRoute
   isItemActive: (item: NavRoute) => boolean
 }) {
-  const [isOpen, setIsOpen] = useState(false)
-  const toggleDropdown = () => setIsOpen(prev => !prev)
-
   const isRouteActive = isItemActive(link)
+  const [isOpen, setIsOpen] = useState(isRouteActive)
+  const toggleDropdown = () => setIsOpen(prev => !prev)
 
   return (
     <>
