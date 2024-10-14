@@ -13,13 +13,14 @@ import { TableColumns } from '@/types/table'
 type DataTableProps<T extends { id: string }> = TableProps & {
   columns: TableColumns<T>
   isLoading: boolean
+  onRowClick?: (row: T) => void
   data?: T[]
 }
 
 export default function DataTable<T extends { id: string }>(
   props: DataTableProps<T>
 ) {
-  const { columns, data, isLoading, ...tableProps } = props
+  const { columns, data, isLoading, onRowClick, ...tableProps } = props
 
   return (
     <Table removeWrapper fullWidth {...tableProps}>
@@ -42,6 +43,7 @@ export default function DataTable<T extends { id: string }>(
           <TableRow
             key={row.id}
             className='cursor-pointer transition-colors duration-100 hover:bg-gray-200'
+            onClick={() => onRowClick?.(row)}
           >
             {columns.map(col => (
               <Fragment key={col.key.toString()}>{col.render(row)}</Fragment>

@@ -1,3 +1,5 @@
+import { StackComponentType } from './stackComponent'
+
 export type Stack = {
   id: string
   created: string
@@ -7,5 +9,5 @@ export type Stack = {
   is_shared: boolean
   name: string
   description: string
-  components: { [componentName: string]: string[] }
+  components: { [type in StackComponentType]?: string[] }
 }
