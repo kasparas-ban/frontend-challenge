@@ -14,6 +14,7 @@ export default function StacksTable() {
       data={data}
       isLoading={isLoading}
       onRowClick={item => navigate(item.id)}
+      aria-label='Table listing all stacks'
     />
   )
 }

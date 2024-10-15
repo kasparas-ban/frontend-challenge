@@ -174,6 +174,7 @@ function StackComponentsList({
             {groupedComponents.map(group =>
               group.components.map(componentId => (
                 <Link
+                  key={componentId}
                   className='cursor-pointer rounded bg-gray-200 px-3 py-2 hover:bg-gray-300'
                   to={`/${ROUTES.stackComponents.path}/${componentId}`}
                 >

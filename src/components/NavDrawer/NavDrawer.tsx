@@ -55,12 +55,15 @@ export default function NavDrawer() {
       <ol className='flex flex-col gap-[6px] text-sm font-semibold'>
         {NAV_ROUTES.map(link =>
           link.childRoutes ? (
-            <NavDropdown link={link} isItemActive={isItemActive} />
+            <NavDropdown
+              key={link.path}
+              link={link}
+              isItemActive={isItemActive}
+            />
           ) : (
-            <li className='flex w-48 items-center gap-1'>
+            <li key={link.path} className='flex w-48 items-center gap-1'>
               <Link
                 to={link.path}
-                key={link.path}
                 className={cn(
                   'flex w-full items-center gap-2 rounded px-3 py-2 transition-colors duration-300 hover:bg-gray-200',
                   isItemActive(link) && 'text-indigo-600'
@@ -93,7 +96,6 @@ function NavDropdown({
       <li className='flex w-48 items-center gap-1'>
         <Link
           to={link.path}
-          key={link.path}
           className={cn(
             'flex w-full items-center gap-2 rounded px-3 py-2 transition-colors duration-300 hover:bg-gray-200',
             isRouteActive && 'text-indigo-600'
@@ -123,7 +125,7 @@ function NavDropdown({
 
       {isOpen &&
         link.childRoutes?.map(childLink => (
-          <Link to={childLink.path} key={childLink.path}>
+          <Link to={childLink.path} key={`child-${childLink.path}`}>
             <li
               className={cn(
                 'ml-4 flex w-44 items-center gap-2 rounded px-3 py-2 transition-colors duration-300 hover:bg-gray-200',

@@ -38,6 +38,8 @@ Stacks and their components have separate info pages to view their respective de
 
 Breadcrumbs were added to aid navigation and add clarity in terms of route location.
 
+To make the site more responsive I would replace navbar menu with a separate popup dialog component on mobile screens.
+
 ## Error handling
 
 Two types of error boundaries were used: one for the whole app and another for a specific route. Route-wise boundary catches any errors that arise from the route, while the app one is meant to catch everything else.
